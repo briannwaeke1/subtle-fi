@@ -1,5 +1,4 @@
-<div align="center">
-  <h3 align="center">A Fintech Bank Application</h3>
+<h3 align="center">A Fintech Bank Application</h3>
 
 ## 📋 <a name="table">Table of Contents</a>
 
