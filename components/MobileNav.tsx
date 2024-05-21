@@ -1,16 +1,15 @@
 "use client";
-import React from "react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
@@ -18,6 +17,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
     <section className="w-full max-w-[264px]">
       <Sheet>
         <SheetTrigger>
+          
           <Image
             src="/icons/hamburger.svg"
             width={30}

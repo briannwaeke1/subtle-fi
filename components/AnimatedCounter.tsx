@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import CountUp from "react-countup";
 
 const AnimatedCounter = ({ amount }: { amount: number }) => {
@@ -9,5 +8,6 @@ const AnimatedCounter = ({ amount }: { amount: number }) => {
     </div>
   );
 };
+
 
 export default AnimatedCounter;
