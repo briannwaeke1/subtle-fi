@@ -1,3 +1,4 @@
+import React from "react";
 import AnimatedCounter from "./AnimatedCounter";
 import DoughntChart from "./DoughnutChart";
 

@@ -1,12 +1,13 @@
 import HeaderBox from "@/components/HeaderBox";
-import RightSidebar from "@/components/RightSidebar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
+import React from "react";
+import RightSidebar from "@/components/RightSidebar";
 
 const Home = () => {
   const loggedIn: User = {
     firstName: "Brian",
-    lastName: "User",
-    email: "user@icloud.com",
+    lastName: "Nwaeke",
+    email: "bnwaeke@icloud.com",
   }; // replace with actual user object and remove optional from User type in the future
   return (
     <section className="home">
@@ -32,9 +33,13 @@ const Home = () => {
         user={loggedIn}
         transactions={[]}
         banks={[
-          {currentBalance: 123.5},
-          {currentBalance: 500.25},
-         ]}
+          {
+            currentBalance: 123.5,
+          },
+          {
+            currentBalance: 500.25,
+          },
+        ]}
       />
     </section>
   );

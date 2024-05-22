@@ -1,6 +1,7 @@
+import React from "react";
 
 const MyBanks = () => {
-  return <div>My Banks</div>;
+  return <div>page</div>;
 };
 
 export default MyBanks;
