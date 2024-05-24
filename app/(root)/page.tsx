@@ -12,7 +12,7 @@ const Home = async () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            firstName={currentUser?.name.split(" ")[0]}
+            userName={currentUser?.name.split(" ")[0]}
             subtext="Access and manage your account and transactions effeciently."
           />
 
