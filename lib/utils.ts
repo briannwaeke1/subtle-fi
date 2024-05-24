@@ -76,7 +76,7 @@ export function formatAmount(amount: number): string {
   return formatter.format(amount);
 }
 
-export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value)); // parseStringify handles next not being able to pass the entire user object via server actions
 
 export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, "");
@@ -206,7 +206,7 @@ export const authFormSchema = (type: string) =>
       type === "sign-in" ? z.string().optional() : z.string().min(2).max(2),
     postalCode:
       type === "sign-in" ? z.string().optional() : z.string().min(3).max(6),
-    dob: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().min(3),
     ssn: type === "sign-in" ? z.string().optional() : z.string().min(4),
 
     // both

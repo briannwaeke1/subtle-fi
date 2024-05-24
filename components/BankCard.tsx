@@ -1,7 +1,6 @@
 import { formatAmount } from "@/lib/utils";
-import Link from "next/link";
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
   return (
@@ -45,7 +44,6 @@ const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
           className="absolute top-0 left-0"
         />
       </Link>
-      {/* COPY FEATURE */}
     </div>
   );
 };

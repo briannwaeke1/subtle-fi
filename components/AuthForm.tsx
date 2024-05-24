@@ -1,20 +1,22 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { createNewUser, signInUser } from "@/lib/actions/user.actions";
 import { authFormSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from "./CustomInput";
 
 const AuthForm = ({ type }: { type: string }) => {
-  // const router = useRouter();
+  const router = useRouter();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = authFormSchema(type);
@@ -27,28 +29,23 @@ const AuthForm = ({ type }: { type: string }) => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      // Sign up with Appwrite & create plaid link token
-      // if (type === "sign-up") {
-      //   const newUser = await signUp(data);
-      // setUser(newUser);
-      // }
-      // if (type === "sign-in") {
-      //   const response = await signIn({
-      //     email: data.email,
-      //     password: data.password,
-      //   });
-      // }
-      // if (response) {
-      //   router.push("/");
-      // }
-      // console.log(values);
-      // setIsLoading(false);
+      if (type === "sign-up") {
+        const newUser = await createNewUser(data);
+        setUser(newUser);
+      }
+      if (type === "sign-in") {
+        const response = await signInUser({
+          email: data.email,
+          password: data.password,
+        });
+
+        if (response) router.push("/");
+      }
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -130,7 +127,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   <div className="flex gap-4">
                     <CustomInput
                       label="Date of Birth"
-                      name="dob"
+                      name="dateOfBirth"
                       placeholder="yyyy-mm-dd"
                       control={form.control}
                     />

@@ -12,16 +12,16 @@ Built with Next.js, SubtleTech Banking is a financial SaaS platform that connect
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
-- Next.js
-- TypeScript
-- Appwrite
-- Plaid
-- Dwolla
-- React Hook Form
-- Zod
-- TailwindCSS
-- Chart.js
-- ShadCN
+- [Next.js](https://nextjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Appwrite](https://appwrite.io)
+- [Plaid](https://plaid.com)
+- [Dwolla](https://www.dwolla.com)
+- [React Hook Form](https://react-hook-form.com)
+- [Zod](https://zod.dev)
+- [TailwindCSS](https://tailwindcss.com)
+- [Chart.js](https://www.chartjs.org)
+- [ShadCN](https://ui.shadcn.com)
 
 ## <a name="features">🔋 Features</a>
 

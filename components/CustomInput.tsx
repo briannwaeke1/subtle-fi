@@ -25,28 +25,26 @@ const CustomInput = ({
   control,
 }: CustomInputProps) => {
   return (
-    <div>
-      <FormField
-        control={control}
-        name={name}
-        render={({ field }) => (
-          <div className="form-item">
-            <FormLabel className="form-label">{label}</FormLabel>
-            <div className="flex w-full flex-col">
-              <FormControl>
-                <Input
-                  placeholder={placeholder}
-                  className="input-class"
-                  type={name === "password" ? "password" : "text"}
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className="form-message" />
-            </div>
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <div className="form-item">
+          <FormLabel className="form-label">{label}</FormLabel>
+          <div className="flex w-full flex-col">
+            <FormControl>
+              <Input
+                placeholder={placeholder}
+                className="input-class"
+                type={name === "password" ? "password" : "text"}
+                {...field}
+              />
+            </FormControl>
+            <FormMessage className="form-message" />
           </div>
-        )}
-      />
-    </div>
+        </div>
+      )}
+    />
   );
 };
 export default CustomInput;
