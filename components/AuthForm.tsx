@@ -16,7 +16,7 @@ import CustomInput from "./CustomInput";
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = authFormSchema(type);
