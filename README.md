@@ -22,6 +22,7 @@ Built with Next.js, SubtleTech Banking is a financial SaaS platform that connect
 - [TailwindCSS](https://tailwindcss.com)
 - [Chart.js](https://www.chartjs.org)
 - [ShadCN](https://ui.shadcn.com)
+- [Sentry](https://sentry.io)
 
 ## <a name="features">🔋 Features</a>
 
@@ -41,4 +42,4 @@ Built with Next.js, SubtleTech Banking is a financial SaaS platform that connect
 
 👉 **Responsiveness**: Ensures the application adapts seamlessly to various screen sizes and devices, providing a consistent user experience across desktop, tablet, and mobile platforms.
 
-#
+👉 **Performance / Error Tracking**: Application performance monitoring & error tracking that will hide sensitive user data when logging errors.
