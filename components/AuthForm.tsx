@@ -1,4 +1,6 @@
 "use client";
+import CustomInput from "@/components/CustomInput";
+import PlaidLink from "@/components/PlaidLink";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { createNewUser, signInUser } from "@/lib/actions/user.actions";
@@ -11,12 +13,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import CustomInput from "./CustomInput";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
 
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = authFormSchema(type);
@@ -32,10 +33,26 @@ const AuthForm = ({ type }: { type: string }) => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
+      // Sign up with Appwrite & create plaid token
+
       if (type === "sign-up") {
-        const newUser = await createNewUser(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          email: data.email,
+          password: data.password,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+        };
+
+        const newUser = await createNewUser(userData);
         setUser(newUser);
       }
+
       if (type === "sign-in") {
         const response = await signInUser({
           email: data.email,
@@ -55,29 +72,22 @@ const AuthForm = ({ type }: { type: string }) => {
     <section className="auth-form">
       <header className="flex flex-col gap-5 md:gap-8">
         <Link href="/" className="cursor-pointer flex items-center gap-1">
-          <Image
-            src="/icons/logo.svg"
-            alt="subtleTech logo"
-            width={34}
-            height={34}
-          />
-          <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-            SubtleTech
-          </h1>
+          <Image src="/icons/logo.svg" alt="subtleTech logo" width={34} height={34} />
+          <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">SubtleTech</h1>
         </Link>
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-16 font-normal text-gray-600">
-              {user
-                ? "Link your account to continue"
-                : "Please enter your details"}
+              {user ? "Link your account to continue" : "Please enter your details"}
             </p>
           </h1>
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">{/* PlaidLink */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
@@ -170,14 +180,9 @@ const AuthForm = ({ type }: { type: string }) => {
 
           <footer className="flex justify-center gap-1">
             <p className="text-14 font-normal text-gray-600">
-              {type === "sign-in"
-                ? "Don't have an account?"
-                : "Already have an account?"}
+              {type === "sign-in" ? "Don't have an account?" : "Already have an account?"}
             </p>
-            <Link
-              className="form-link"
-              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-            >
+            <Link className="form-link" href={type === "sign-in" ? "/sign-up" : "/sign-in"}>
               {type === "sign-in" ? "Sign Up" : "Log In"}
             </Link>
           </footer>
