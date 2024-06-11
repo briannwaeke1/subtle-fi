@@ -19,7 +19,7 @@ SubtleTech Banking is a financial SaaS platform that connects to multiple bank a
 - [Plaid](https://plaid.com): Securely connect user bank accounts and enable real-time transaction data and balance updates
 - [Dwolla](https://www.dwolla.com): Securely send, receive, and request money
 - [React Hook Form](https://react-hook-form.com)
-- [Zod](https://zod.dev)
+- [Zod](https://zod.dev): Runtime type-checking
 - [TailwindCSS](https://tailwindcss.com)
 - [Chart.js](https://www.chartjs.org)
 - [ShadCN](https://ui.shadcn.com)

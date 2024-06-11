@@ -1,10 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { createLinkToken, exchangePublicToken } from "@/lib/actions/user.actions";
+import {
+  createLinkToken,
+  exchangePublicToken,
+} from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { PlaidLinkOnSuccess, PlaidLinkOptions, usePlaidLink } from "react-plaid-link";
+import {
+  PlaidLinkOnSuccess,
+  PlaidLinkOptions,
+  usePlaidLink,
+} from "react-plaid-link";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
@@ -19,7 +26,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
       });
       router.push("/");
     },
-    [user]
+    [user],
   );
 
   const config: PlaidLinkOptions = {
@@ -42,7 +49,11 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   return (
     <>
       {variant === "primary" ? (
-        <Button onClick={() => open()} disabled={!ready} className="plaidlink-primary">
+        <Button
+          onClick={() => open()}
+          disabled={!ready}
+          className="plaidlink-primary"
+        >
           Connect Bank
         </Button>
       ) : variant === "ghost" ? (
