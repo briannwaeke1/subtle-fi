@@ -40,22 +40,22 @@ export const formatDateTime = (dateString: Date) => {
 
   const formattedDateTime: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateTimeOptions
+    dateTimeOptions,
   );
 
   const formattedDateDay: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateDayOptions
+    dateDayOptions,
   );
 
   const formattedDate: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateOptions
+    dateOptions,
   );
 
   const formattedTime: string = new Date(dateString).toLocaleString(
     "en-US",
-    timeOptions
+    timeOptions,
   );
 
   return {
@@ -76,7 +76,15 @@ export function formatAmount(amount: number): string {
   return formatter.format(amount);
 }
 
-export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value)); // parseStringify handles next not being able to pass the entire user object via server actions
+/**
+ * Parses an object into a JSON string and then parses it back into an object.
+ * This is useful when passing objects that cannot be directly serialized, such as functions or circular references.
+ * For example, next not being able to pass the entire user object via server actions
+ *
+ * @param value - The value to be parsed and stringified.
+ * @returns The parsed and stringified object.
+ */
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
 export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, "");
@@ -88,6 +96,13 @@ interface UrlQueryParams {
   value: string;
 }
 
+/**
+ * Forms a URL query string by adding or updating a key-value pair in the existing query parameters.
+ * @param params - The current URL query parameters.
+ * @param key - The key of the parameter to add or update.
+ * @param value - The value of the parameter to add or update.
+ * @returns The updated URL query string.
+ */
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   const currentUrl = qs.parse(params);
 
@@ -98,7 +113,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
       url: window.location.pathname,
       query: currentUrl,
     },
-    { skipNull: true }
+    { skipNull: true },
   );
 }
 
@@ -131,14 +146,14 @@ export function getAccountTypeColors(type: AccountTypes) {
 }
 
 export function countTransactionCategories(
-  transactions: Transaction[]
+  transactions: Transaction[],
 ): CategoryCount[] {
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
 
   // Iterate over each transaction
   transactions &&
-    transactions.forEach((transaction) => {
+    transactions.forEach(transaction => {
       // Extract the category from the transaction
       const category = transaction.category;
 
@@ -156,11 +171,11 @@ export function countTransactionCategories(
 
   // Convert the categoryCounts object to an array of objects
   const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
-    (category) => ({
+    category => ({
       name: category,
       count: categoryCounts[category],
       totalCount,
-    })
+    }),
   );
 
   // Sort the aggregatedCategories array by count in descending order
@@ -187,6 +202,7 @@ export function decryptId(id: string) {
   return atob(id);
 }
 
+// Handles two day delay for transactions posted in sandbox environment
 export const getTransactionStatus = (date: Date) => {
   const today = new Date();
   const twoDaysAgo = new Date(today);
@@ -209,7 +225,7 @@ export const authFormSchema = (type: string) =>
     dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().min(3),
     ssn: type === "sign-in" ? z.string().optional() : z.string().min(4),
 
-    // both
+    // sign in and sign up
     email: z.string().email({ message: "Invalid email" }),
     password: z
       .string()

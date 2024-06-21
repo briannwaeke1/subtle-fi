@@ -1,7 +1,5 @@
-import React from "react";
-
 const TransactionHistory = () => {
-  return <div>page</div>;
+  return <div>Transaction History</div>;
 };
 
 export default TransactionHistory;
