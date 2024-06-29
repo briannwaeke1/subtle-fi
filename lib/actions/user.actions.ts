@@ -40,7 +40,6 @@ export const getUserInfo = async ({ userId }: UserInfoProps) => {
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.error("Error", error);
-    return null;
   }
 };
 
@@ -128,6 +127,7 @@ export async function getCurrentUser() {
 
     return parseStringify(user);
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
@@ -187,7 +187,9 @@ export const createBankAccount = async ({
       },
     );
     return parseStringify(bankAccount);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const exchangePublicToken = async ({
@@ -268,7 +270,6 @@ export const getBanks = async ({ userId }: BanksProps) => {
     return parseStringify(banks.documents);
   } catch (error) {
     console.error("Error:", error);
-    return null;
   }
 };
 
@@ -283,11 +284,10 @@ export const getBank = async ({ documentId }: BankProps) => {
       [Query.equal("$id", [documentId])],
     );
 
-    if (bank.total !== 1) return null;
+    // if (bank.total !== 1) return null;
 
     return parseStringify(bank.documents[0]);
   } catch (error) {
     console.error("Error", error);
-    return null;
   }
 };

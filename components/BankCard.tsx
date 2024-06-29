@@ -7,16 +7,17 @@ const BankCard = ({
   userName,
   showBalance = true,
 }: CreditCardProps) => {
+  const { mask, name, currentBalance } = account;
   return (
     <div className="flex flex-col">
       <Link href="/" className="bank-card">
         <div className="bank-card_content">
           <div>
             <h1 className="text-16 font-semibold text-white">
-              {account.name || userName}
+              {name || userName}
             </h1>
             <p className="font-ibm-plex-serif font-black text-white">
-              {formatAmount(account.currentBalance)}
+              {formatAmount(currentBalance)}
             </p>
           </div>
           <article className="flex flex-col gap-2">
@@ -26,7 +27,7 @@ const BankCard = ({
             </div>
             <p className="text-14 font-semibold tracking-[1.1px] text-white">
               ●●●● ●●●● ●●●●
-              <span className="text-16">1234</span>
+              <span className="text-16">{mask}</span>
             </p>
           </article>
         </div>

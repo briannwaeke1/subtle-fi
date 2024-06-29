@@ -8,9 +8,12 @@ import {
 } from "@/components/ui/table";
 import {
   formatAmount,
+  formatDateTime,
   getTransactionStatus,
   removeSpecialCharacters,
 } from "@/lib/utils";
+
+import { CategoryBadge } from "./CategoryBadge";
 
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (
@@ -33,11 +36,39 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
           const isCredit = t.type === "credit";
 
           return (
-            <TableRow key={t.id}>
-              <TableCell>
-                <div>
-                  <h1>{removeSpecialCharacters(t.name)}</h1>
+            <TableRow
+              key={t.id}
+              className={`${isDebit || amount[0] === "-" ? "bg-[#FFFBFA]" : "bg-[#F6FEF9]"}
+            !over:bg-none !border-b-DEFAULT`}
+            >
+              <TableCell className="max-w-[250px] pl-2 pr-10">
+                <div className="flex items-center gap-3">
+                  <h1 className="text-14 truncate font-semibold text-[#344054]">
+                    {removeSpecialCharacters(t.name)}
+                  </h1>
                 </div>
+              </TableCell>
+
+              <TableCell
+                className={`pl-2 pr-10 font-semibold ${isDebit || amount[0] === "-" ? "text-[#F04438]" : "text-[#039855]"}`}
+              >
+                {isDebit ? `-${amount}` : isCredit ? amount : amount}
+              </TableCell>
+
+              <TableCell className="pl-2 pr-10">
+                <CategoryBadge category={status} />
+              </TableCell>
+
+              <TableCell className="min-w-32 pl-2 pr-10">
+                {formatDateTime(new Date(t.date)).dateTime}
+              </TableCell>
+
+              <TableCell className="min-w-24 pl-2 pr-10 capitalize">
+                {t.paymentChannel}
+              </TableCell>
+
+              <TableCell className=" pl-2 pr-10 max-md:hidden">
+                <CategoryBadge category={t.category} />
               </TableCell>
             </TableRow>
           );
