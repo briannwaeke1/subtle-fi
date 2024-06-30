@@ -117,7 +117,7 @@ export const createNewUser = async ({
   }
 };
 
-export async function getCurrentUser() {
+export const getCurrentUser = async () => {
   try {
     const { account } = await createSessionClient();
 
@@ -130,7 +130,7 @@ export async function getCurrentUser() {
     console.log(error);
     return null;
   }
-}
+};
 
 export const signOutUser = async () => {
   try {

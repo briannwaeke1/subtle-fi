@@ -4,9 +4,9 @@ import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
-}
+};
 
 // FORMAT DATE TIME
 export const formatDateTime = (dateString: Date) => {
@@ -66,7 +66,7 @@ export const formatDateTime = (dateString: Date) => {
   };
 };
 
-export function formatAmount(amount: number): string {
+export const formatAmount = (amount: number): string => {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -74,7 +74,7 @@ export function formatAmount(amount: number): string {
   });
 
   return formatter.format(amount);
-}
+};
 
 /**
  * Parses an object into a JSON string and then parses it back into an object.
@@ -90,12 +90,6 @@ export const removeSpecialCharacters = (value: string) => {
   return value.replace(/[^\w\s]/gi, "");
 };
 
-interface UrlQueryParams {
-  params: string;
-  key: string;
-  value: string;
-}
-
 /**
  * Forms a URL query string by adding or updating a key-value pair in the existing query parameters.
  * @param params - The current URL query parameters.
@@ -103,7 +97,7 @@ interface UrlQueryParams {
  * @param value - The value of the parameter to add or update.
  * @returns The updated URL query string.
  */
-export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
   const currentUrl = qs.parse(params);
 
   currentUrl[key] = value;
@@ -115,7 +109,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
     },
     { skipNull: true },
   );
-}
+};
 
 export function getAccountTypeColors(type: AccountTypes) {
   switch (type) {
@@ -145,9 +139,9 @@ export function getAccountTypeColors(type: AccountTypes) {
   }
 }
 
-export function countTransactionCategories(
+export const countTransactionCategories = (
   transactions: Transaction[],
-): CategoryCount[] {
+): CategoryCount[] => {
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
 
@@ -182,9 +176,9 @@ export function countTransactionCategories(
   aggregatedCategories.sort((a, b) => b.count - a.count);
 
   return aggregatedCategories;
-}
+};
 
-export function extractCustomerIdFromUrl(url: string) {
+export const extractCustomerIdFromUrl = (url: string) => {
   // Split the URL string by '/'
   const parts = url.split("/");
 
@@ -192,7 +186,7 @@ export function extractCustomerIdFromUrl(url: string) {
   const customerId = parts[parts.length - 1];
 
   return customerId;
-}
+};
 
 export function encryptId(id: string) {
   return btoa(id);
