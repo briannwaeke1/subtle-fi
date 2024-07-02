@@ -137,9 +137,9 @@ declare type NewDwollaCustomerParams = {
   ssn: string;
 };
 
-declare interface CreditCardProps {
+declare interface BankCardProps {
   account: Account;
-  userName: string;
+  fullName: string;
   showBalance?: boolean;
 }
 

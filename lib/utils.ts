@@ -77,10 +77,8 @@ export const formatAmount = (amount: number): string => {
 };
 
 /**
- * Parses an object into a JSON string and then parses it back into an object.
- * This is useful when passing objects that cannot be directly serialized, such as functions or circular references.
- * For example, next not being able to pass the entire user object via server actions
- *
+ * Handles Next.js's serialization limitations when returning data in server actions
+ * https://github.com/vercel/next.js/discussions/58847#discussioncomment-7659301
  * @param value - The value to be parsed and stringified.
  * @returns The parsed and stringified object.
  */
@@ -111,7 +109,7 @@ export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
   );
 };
 
-export function getAccountTypeColors(type: AccountTypes) {
+export const getAccountTypeColors = (type: AccountTypes) => {
   switch (type) {
     case "depository":
       return {
@@ -137,7 +135,7 @@ export function getAccountTypeColors(type: AccountTypes) {
         subText: "text-green-700",
       };
   }
-}
+};
 
 export const countTransactionCategories = (
   transactions: Transaction[],
@@ -188,13 +186,9 @@ export const extractCustomerIdFromUrl = (url: string) => {
   return customerId;
 };
 
-export function encryptId(id: string) {
-  return btoa(id);
-}
+export const encryptId = (id: string) => btoa(id);
 
-export function decryptId(id: string) {
-  return atob(id);
-}
+export const decryptId = (id: string) => atob(id);
 
 // Handles two day delay for transactions posted in sandbox environment
 export const getTransactionStatus = (date: Date) => {

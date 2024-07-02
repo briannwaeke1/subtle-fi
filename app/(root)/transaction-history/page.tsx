@@ -23,7 +23,7 @@ const TransactionHistory = async ({
   const { currentBalance, name, officialName, mask } = account?.data;
 
   return (
-    <div className="transactions">
+    <section className="transactions">
       <div className="transactions-header">
         <HeaderBox
           title="Transaction History"
@@ -52,7 +52,7 @@ const TransactionHistory = async ({
           <TransactionsTable transactions={account?.transactions} />
         </section>
       </div>
-    </div>
+    </section>
   );
 };
 
