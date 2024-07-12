@@ -1,4 +1,4 @@
-import { BankTabItem } from "@/components/BankTabItem";
+import BankTabItem from "@/components/BankTabItem";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
 import Link from "next/link";

@@ -2,7 +2,7 @@
 
 import { createAdminClient } from "@/lib/appwrite";
 import { parseStringify } from "@/lib/utils";
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -41,13 +41,13 @@ export const getTransactionsByBankId = async ({
     const senderTransactions = await database.listDocuments(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,
-      // [Query.equal("senderBankId", bankId)],
+      [Query.equal("senderBankId", bankId)],
     );
 
     const receiverTransactions = await database.listDocuments(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,
-      // [Query.equal("receiverBankId", bankId)],
+      [Query.equal("receiverBankId", bankId)],
     );
 
     const transactions = {

@@ -13,7 +13,7 @@ import {
   removeSpecialCharacters,
 } from "@/lib/utils";
 
-import { CategoryBadge } from "./CategoryBadge";
+import CategoryBadge from "@/components/CategoryBadge";
 
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (

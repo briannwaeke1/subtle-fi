@@ -1,50 +1,49 @@
 import {
   FormControl,
-  FormField,
+  FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { authFormSchema } from "@/lib/utils";
-import { Control, FieldPath } from "react-hook-form";
-import { z } from "zod";
-
-const formSchema = authFormSchema("sign-up");
+import { cn } from "@/lib/utils";
+import { FieldValues } from "react-hook-form";
 
 interface CustomInputProps {
   label: string;
-  name: FieldPath<z.infer<typeof formSchema>>;
   placeholder: string;
-  control: Control<z.infer<typeof formSchema>>;
+  inputWrapperClassName?: string;
+  formItemClassName?: string;
+  formLabelClassName?: string;
+  field: FieldValues;
 }
 
 const CustomInput = ({
   label,
-  name,
   placeholder,
-  control,
+  formItemClassName,
+  formLabelClassName,
+  inputWrapperClassName,
+  field,
 }: CustomInputProps) => {
   return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <div className="form-item">
-          <FormLabel className="form-label">{label}</FormLabel>
-          <div className="flex w-full flex-col">
-            <FormControl>
-              <Input
-                placeholder={placeholder}
-                className="input-class"
-                type={name === "password" ? "password" : "text"}
-                {...field}
-              />
-            </FormControl>
-            <FormMessage className="form-message" />
-          </div>
+    <FormItem className={formItemClassName}>
+      <div className={cn("form-item", inputWrapperClassName)}>
+        <FormLabel className={cn("form-label", formLabelClassName)}>
+          {label}
+        </FormLabel>
+        <div className="flex w-full flex-col">
+          <FormControl>
+            <Input
+              placeholder={placeholder}
+              className="input-class"
+              type={label === "Password" ? "password" : "text"}
+              {...field}
+            />
+          </FormControl>
+          <FormMessage className="form-message" />
         </div>
-      )}
-    />
+      </div>
+    </FormItem>
   );
 };
 export default CustomInput;

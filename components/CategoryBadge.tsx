@@ -1,7 +1,7 @@
 import { transactionCategoryStyles } from "@/constants";
 import { cn } from "@/lib/utils";
 
-export const CategoryBadge = ({ category }: CategoryBadgeProps) => {
+const CategoryBadge = ({ category }: CategoryBadgeProps) => {
   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
     transactionCategoryStyles[
       category as keyof typeof transactionCategoryStyles
@@ -14,3 +14,5 @@ export const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     </div>
   );
 };
+
+export default CategoryBadge;
