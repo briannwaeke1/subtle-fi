@@ -9,7 +9,7 @@
 
 ## <a name="introduction">🤖 Introduction</a>
 
-SubtleTech Banking is a financial SaaS platform that connects to multiple bank accounts, displays transactions in real-time, allows users to transfer money to other platform users, and manages their finances altogether.
+Subtle-Fi Banking is a financial SaaS platform that connects to multiple bank accounts, displays transactions in real-time, allows users to transfer money to other platform users, and manages their finances altogether.
 
 ## <a name="tech-stack">⚙️ Tech Stack (Full-Stack)</a>
 
@@ -47,7 +47,7 @@ SubtleTech Banking is a financial SaaS platform that connects to multiple bank a
 
 ## <a name="app-flow-diagram">💭 App Flow Diagram</a>
 
-**Figma Link:** [SubtleTech Banking App Flow Diagram](https://www.figma.com/board/6byDMiPGoMF4KK81a4iA7f/SubtleTech-Banking-App-Flow?node-id=0-1&t=5kxIUPkpZczTrB57-1)
+**Figma Link:** [Subtle-Fi Banking App Flow Diagram](https://www.figma.com/board/6byDMiPGoMF4KK81a4iA7f/SubtleTech-Banking-App-Flow?node-id=0-1&t=5kxIUPkpZczTrB57-1)
 
 **Home Page (Desktop) Screenshot:** <img width="1680" alt="Screenshot 2024-06-29 at 4 58 46 PM" src="https://github.com/briannwaeke1/subtletech_banking/assets/94656081/31164603-2169-4b36-b8c7-83cca80be8c4">
 
